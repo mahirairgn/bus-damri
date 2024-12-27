@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Bus</title>
+    <object th:include="~{fragments/common :: js}" th:remove="tag "></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag "></object>
+</head>
+
+<body>
+    <script>
+        $(document).ready(function () {
+            $('#table-bus').DataTable({
+                "lengthMenu": [10, 20, 30],
+            });
+        });
+    </script>
+
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <div class="container">
+        <div class="text-center my-4">
+            <h2>Daftar Bus</h2>
+        </div>
+        <table id="table-bus" class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Id</th>
+                    <th scope="col" class="text-center">Plat Nomor</th>
+                    <th scope="col" class="text-center">Kapasitas</th>
+                    <th scope="col" class="text-center">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="bus : ${listBus}">
+                    <td th:text="${bus.Id}"></td>
+                    <td class="text-center" th:text="${bus.platNomor}"></td>
+                    <td th:text="${bus.kapasitas}"></td>
+                    <td th:text="${bus.statusOperasional}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
